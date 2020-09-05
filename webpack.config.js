@@ -1,6 +1,5 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const loader = require('sass-loader')
 
 module.exports = (env)=>{
     const isProduction = env === 'production'
@@ -11,7 +10,7 @@ module.exports = (env)=>{
             path: path.join(__dirname, "public"),
             filename: "bundle.js"
         },
-        mode: 'development',
+        mode: isProduction?'production':'development',
         module: {
             rules: [{
                 loader: 'babel-loader',
