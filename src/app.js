@@ -8,6 +8,7 @@ import 'react-dates/initialize';
 
 import AppRouter from './routers/app_router'
 import configureStore from './stores/configure-store'
+import {startSetExpenses} from './actions/expenses'
 import './firebase/firebase'
 import './styles/styles.scss'
 
@@ -18,5 +19,7 @@ const jsx = (
         <AppRouter />    
     </Provider>
 )
-
-ReactDOM.render(jsx, document.getElementById('app'))
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
+store.dispatch(startSetExpenses()).then(()=>{
+    ReactDOM.render(jsx, document.getElementById('app'))
+})
