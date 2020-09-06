@@ -8,6 +8,7 @@ import 'react-dates/initialize';
 
 import AppRouter from './routers/app_router'
 import configureStore from './stores/configure-store'
+import './firebase/firebase'
 import './styles/styles.scss'
 
 const store = configureStore()

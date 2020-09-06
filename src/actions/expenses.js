@@ -1,21 +1,29 @@
 import { v4 as uuid } from 'uuid'
+import database from '../firebase/firebase'
 
 //ADD_EXPENSE
-const addExpense = ({
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-} = {} )=>({
+const addExpense = (expense)=>({
     type: 'ADD_EXPENSE',
-    expense: {
-        id: uuid(),
-        description,
-        note,
-        amount,
-        createdAt
-    }
+    expense
 })
+
+const startAddExpense = (expenseData = {})=>{
+    return (dispatch)=>{
+        const {
+            description = '',
+            note = '',
+            amount = 0,
+            createdAt = 0
+        } = expenseData
+        const expense = { description, note, amount, createdAt }
+        return database.ref('expenses').push(expense).then((ref)=>{
+            dispatch(addExpense({
+                id: ref.key,
+                ...expense
+            }))
+        })
+    }
+}
 
 //REMOVE_EXPENSE
 const removeExpense = (id)=>({
@@ -32,6 +40,7 @@ const editExpense = (id, updates)=>({
 
 export{
     addExpense,
+    startAddExpense,
     editExpense,
     removeExpense
 }
