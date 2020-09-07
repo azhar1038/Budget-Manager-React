@@ -1,4 +1,3 @@
-import configureMockStore from 'redux-mock-store'
 import {login, logout} from '../../actions/auth'
 
 test('Should setup login action object', ()=>{

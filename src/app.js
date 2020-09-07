@@ -6,7 +6,7 @@ import 'normalize.css/normalize.css'
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 
-import AppRouter, {history} from './routers/app_router'
+import AppRouter, {history} from './routers/app-router'
 import configureStore from './stores/configure-store'
 import {startSetExpenses} from './actions/expenses'
 import {login, logout} from './actions/auth'
